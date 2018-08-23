@@ -1,0 +1,67 @@
+﻿<Window x:Class="mrObjectsFilter.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:viewModels="clr-namespace:mrObjectsFilter.ViewModels"
+        xmlns:models="clr-namespace:mrObjectsFilter.Models"
+        SizeToContent="WidthAndHeight" Loaded="MainWindow_OnLoaded"
+        ResizeMode="CanResizeWithGrip"
+        mc:Ignorable="d" MinHeight="200" MinWidth="300"
+        d:DesignHeight="250" d:DesignWidth="400"
+        WindowStyle="ToolWindow" Title="Objects filter"
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=False}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Margin" Value="3"></Setter>
+            </Style>
+            <Style TargetType="{x:Type TextBlock}">
+                <Setter Property="Margin" Value="3"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Category:"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Count:" HorizontalAlignment="Right" Margin="3 3 10 3"></TextBlock>
+        <ListBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" BorderThickness="1"
+                 ItemsSource="{Binding Path=SelectedObjects}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="models:SelectedObject">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Content="{Binding Path=DisplayName, Mode=OneWay}"
+                                  IsChecked="{Binding Path=Selected, Mode=TwoWay}"></CheckBox>
+                        <TextBlock Grid.Column="1" Text="{Binding Path=Count, Mode=OneWay}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.Column="1" Grid.Row="1" Content="Select all" MinWidth="100"></Button>
+        <Button Grid.Column="1" Grid.Row="2" Content="Select none" MinWidth="100"></Button>
+        <TextBlock Grid.Column="0" Grid.Row="4" Text="Total selected items:"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding Path=TotalCount}"
+                   HorizontalAlignment="Right" Margin="3 3 10 3"></TextBlock>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"
+                    HorizontalAlignment="Right">
+            <Button Content="OK" MinWidth="100"></Button>
+            <Button Content="Cancel" MinWidth="100"></Button>
+        </StackPanel>
+    </Grid>
+</Window>
+
