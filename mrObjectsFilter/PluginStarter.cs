@@ -1,27 +1,14 @@
-﻿using System;
-using mrObjectsFilter.ViewModels;
-using mrObjectsFilter.Views;
-using ModPlus;
-using Renga;
-
-namespace mrObjectsFilter
+﻿namespace mrObjectsFilter
 {
+    using System;
+    using ModPlus;
+    using ViewModels;
+    using Views;
+
     public class PluginStarter : IRengaFunction
     {
         private static MainWindow _mainWindow;
-
-        public bool Initialize(string pluginFolder)
-        {
-            var rengaApp = new Renga.Application();
-            MenuBuilder.AddButtonToUiPanel(rengaApp);
-            return true;
-        }
-
-        public void Stop()
-        {
-            MenuBuilder.Dispose();
-        }
-
+        
         public void Start()
         {
             if (_mainWindow == null)

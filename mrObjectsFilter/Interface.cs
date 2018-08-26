@@ -1,30 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ModPlusAPI.Interfaces;
-
-namespace mrObjectsFilter
+﻿namespace mrObjectsFilter
 {
+    using ModPlusAPI.Interfaces;
+
     public class Interface : IModPlusFunctionForRenga
     {
         public SupportedProduct SupportedProduct => SupportedProduct.Renga;
 
-        public string Name => "";
+        public string Name => "mrObjectsFilter";
 
         public RengaProduct RengaProduct => RengaProduct.Any;
 
-        public string LName { get; }
+        public FunctionUILocation UiLocation => FunctionUILocation.ContextMenu;
 
-        public string Description { get; }
+        public string ActionButtonViewType => string.Empty;
 
-        public string Author { get; }
+        public string LName => "Фильтр";
 
-        public string Price { get; }
+        public string Description => "Фильтр выбранных элементов по категории";
 
-        public string FullDescription { get; }
+        public string Author => "Пекшев Александр aka Modis";
 
-        public string ToolTipHelpImage { get; }
+        public string Price => "0";
+
+        public string FullDescription => string.Empty;
+
+        public string ToolTipHelpImage => string.Empty;
     }
 }

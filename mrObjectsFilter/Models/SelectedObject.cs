@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using mrObjectsFilter.Annotations;
-
-namespace mrObjectsFilter.Models
+﻿namespace mrObjectsFilter.Models
 {
+    using System;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+    using Annotations;
+
     public class SelectedObject : INotifyPropertyChanged
     {
         public SelectedObject(string displayName, Guid categoryId)
@@ -32,7 +32,8 @@ namespace mrObjectsFilter.Models
             get => _selected;
             set
             {
-                if (Equals(value, _selected)) return;
+                if (Equals(value, _selected))
+                    return;
                 _selected = value;
                 OnPropertyChanged();
             }

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using mrObjectsFilter.Annotations;
-using mrObjectsFilter.Models;
-using Renga;
-
-namespace mrObjectsFilter.ViewModels
+﻿namespace mrObjectsFilter.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Linq;
+    using System.Runtime.CompilerServices;
+    using Annotations;
+    using Models;
+    using Renga;
+
     public class MainViewModel : INotifyPropertyChanged
     {
         private Renga.Application _rengaApp;
@@ -21,18 +21,20 @@ namespace mrObjectsFilter.ViewModels
 
         public void GetObjectsFromCurrentSelection()
         {
-            var selection = _rengaApp.GetSelection();
-            var objects = _rengaApp.GetProject().GetModel().GetObjects();
+            var selection = _rengaApp.Selection;
+            var objects = _rengaApp.Project.Model.GetObjects();
             _selectedObjectsOnStartup = new List<SelectedObject>();
-            int[] selectedObjectsIds = (int[])selection.GetSelectedModelObjects();
+            int[] selectedObjectsIds = (int[])selection.GetSelectedObjects();
             foreach (int selectedObjectId in selectedObjectsIds)
             {
-                if (objects.GetObjectById(selectedObjectId) is IModelObject modelObject)
+                if (objects.GetById(selectedObjectId) is IModelObject modelObject)
                 {
-                    var objectType = modelObject.GetObjectType();
+                    var objectType = modelObject.ObjectType;
                     var selectedObjectModel = _selectedObjectsOnStartup.FirstOrDefault(so => so.CategoryId.Equals(objectType));
                     if (selectedObjectModel != null)
-                        selectedObjectModel.Ids.Add(modelObject.GetId());
+                    {
+                        selectedObjectModel.Ids.Add(modelObject.Id);
+                    }
                     else
                     {
                         var so = new SelectedObject(GetDisplayNameByObjectType(objectType), objectType);

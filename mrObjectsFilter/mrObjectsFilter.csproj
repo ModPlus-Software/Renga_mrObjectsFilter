@@ -17,18 +17,20 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>C:\Program Files\Renga Architecture\Plugins\mrObjectsFilter\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\ModPlus\Functions\Renga\mrObjectsFilter\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>mrObjectsFilter.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>C:\Program Files\Renga Architecture\Plugins\mrObjectsFilter\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\..\ModPlus\Functions\Renga\mrObjectsFilter\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>mrObjectsFilter.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ModPlusAPI">
@@ -52,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface.cs" />
-    <Compile Include="MenuBuilder.cs" />
     <Compile Include="Models\SelectedObject.cs" />
     <Compile Include="PluginStarter.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -78,6 +79,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="mrObjectsFilter.ruleset" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.0.2\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\mrObjectsFilter_24x24.png" />
+    <Resource Include="Resources\mrObjectsFilter_32x32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
