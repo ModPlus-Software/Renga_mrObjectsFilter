@@ -14,6 +14,8 @@
 
         public string ActionButtonViewType => string.Empty;
 
+        public bool IsAddingToMenuBySelf => false;
+
         public string LName => "Фильтр";
 
         public string Description => "Фильтр выбранных элементов по категории";
