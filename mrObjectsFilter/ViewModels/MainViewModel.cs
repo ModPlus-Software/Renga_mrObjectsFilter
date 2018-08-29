@@ -3,26 +3,23 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
     using System.Linq;
-    using System.Runtime.CompilerServices;
-    using Annotations;
     using Models;
     using Renga;
 
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : VmBase
     {
-        private Renga.Application _rengaApp;
+        private readonly Renga.Application _rengaApplication;
 
         public MainViewModel()
         {
-            _rengaApp = new Renga.Application();
+            _rengaApplication = new Renga.Application();
         }
 
         public void GetObjectsFromCurrentSelection()
         {
-            var selection = _rengaApp.Selection;
-            var objects = _rengaApp.Project.Model.GetObjects();
+            var selection = _rengaApplication.Selection;
+            var objects = _rengaApplication.Project.Model.GetObjects();
             _selectedObjectsOnStartup = new List<SelectedObject>();
             int[] selectedObjectsIds = (int[])selection.GetSelectedObjects();
             foreach (int selectedObjectId in selectedObjectsIds)
@@ -50,11 +47,7 @@
 
         private string GetDisplayNameByObjectType(Guid objectType)
         {
-            if (objectType == Renga.ObjectTypes.Door) return "Door";
-            if (objectType == Renga.ObjectTypes.Window) return "Window";
-            if (objectType == Renga.ObjectTypes.Wall) return "Wall";
-
-            return "Other";
+            return ModPlus.Helpers.Localization.RengaObjectType(objectType);
         }
 
         private List<SelectedObject> _selectedObjectsOnStartup;
@@ -62,13 +55,5 @@
         public ObservableCollection<SelectedObject> SelectedObjects { get; private set; }
 
         public int TotalCount => SelectedObjects.Count;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

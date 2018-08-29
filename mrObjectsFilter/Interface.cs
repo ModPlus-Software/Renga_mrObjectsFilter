@@ -12,6 +12,10 @@
 
         public FunctionUILocation UiLocation => FunctionUILocation.ContextMenu;
 
+        public ContextMenuShowCase ContextMenuShowCase => ContextMenuShowCase.Selection;
+
+        public ViewType ViewType => ViewType.View3D;
+
         public string ActionButtonViewType => string.Empty;
 
         public bool IsAddingToMenuBySelf => false;
@@ -25,7 +29,5 @@
         public string Price => "0";
 
         public string FullDescription => string.Empty;
-
-        public string ToolTipHelpImage => string.Empty;
     }
 }

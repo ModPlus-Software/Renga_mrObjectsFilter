@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
-    using Annotations;
+    using ViewModels;
 
-    public class SelectedObject : INotifyPropertyChanged
+    public class SelectedObject : VmBase
     {
+        private bool _selected = true;
+
         public SelectedObject(string displayName, Guid categoryId)
         {
             DisplayName = displayName;
@@ -15,25 +15,16 @@
             Ids = new ObservableCollection<int>();
             Ids.CollectionChanged += Ids_CollectionChanged;
         }
-
-        private void Ids_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(Count));
-        }
-
+        
         public Guid CategoryId { get; }
 
         public string DisplayName { get; }
-
-        private bool _selected;
-
+        
         public bool Selected
         {
             get => _selected;
             set
             {
-                if (Equals(value, _selected))
-                    return;
                 _selected = value;
                 OnPropertyChanged();
             }
@@ -43,12 +34,9 @@
 
         public int Count => Ids.Count;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void Ids_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            OnPropertyChanged(nameof(Count));
         }
     }
 }

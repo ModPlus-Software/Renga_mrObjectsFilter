@@ -1,7 +1,8 @@
-﻿using System.Windows;
-
-namespace mrObjectsFilter.Views
+﻿namespace mrObjectsFilter.Views
 {
+    using System.Windows;
+    using ViewModels;
+
     public partial class MainWindow
     {
         public MainWindow()
@@ -12,6 +13,12 @@ namespace mrObjectsFilter.Views
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             SizeToContent = SizeToContent.Manual;
+            ((MainViewModel)DataContext).GetObjectsFromCurrentSelection();
+        }
+
+        private void BtCancel_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
