@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.ObjectModel;
-    using ViewModels;
+    using ModPlusAPI.Mvvm;
 
     public class SelectedObject : VmBase
     {

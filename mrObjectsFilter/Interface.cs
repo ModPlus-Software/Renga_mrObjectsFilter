@@ -4,6 +4,13 @@
 
     public class Interface : IModPlusFunctionForRenga
     {
+        private static Interface _instance;
+
+        public static Interface GetInstance()
+        {
+            return _instance ?? (_instance = new Interface());
+        }
+
         public SupportedProduct SupportedProduct => SupportedProduct.Renga;
 
         public string Name => "mrObjectsFilter";

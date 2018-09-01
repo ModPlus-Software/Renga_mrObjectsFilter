@@ -8,6 +8,7 @@
         public MainWindow()
         {
             InitializeComponent();
+            Title = ModPlusAPI.Language.GetFunctionLocalName("mrObjectsFilter", Interface.GetInstance().LName);
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
