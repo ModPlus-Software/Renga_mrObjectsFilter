@@ -1,5 +1,6 @@
 ﻿namespace mrObjectsFilter
 {
+    using System.Collections.Generic;
     using ModPlusAPI.Interfaces;
 
     public class Interface : IModPlusFunctionForRenga
@@ -21,9 +22,7 @@
 
         public ContextMenuShowCase ContextMenuShowCase => ContextMenuShowCase.Selection;
 
-        public ViewType ViewType => ViewType.View3D;
-
-        public string ActionButtonViewType => string.Empty;
+        public List<ViewType> ViewTypes => new List<ViewType> { ViewType.View3D, ViewType.Level };
 
         public bool IsAddingToMenuBySelf => false;
 
