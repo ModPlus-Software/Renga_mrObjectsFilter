@@ -1,4 +1,4 @@
-﻿<mpc:BaseMetroWindow 
+﻿<mps:ModPlusWindow
     x:Class="mrObjectsFilter.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,16 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:viewModels="clr-namespace:mrObjectsFilter.ViewModels"
     xmlns:models="clr-namespace:mrObjectsFilter.Models"
-    xmlns:mpc="clr-namespace:ModPlusAPI.Windows.Mpc;assembly=ModPlusAPI"
+    xmlns:mps="https://modplus.org/winfx/xaml/controls"
     SizeToContent="WidthAndHeight" Loaded="MainWindow_OnLoaded"
-    ResizeMode="CanResizeWithGrip" ShowCloseButton="False" ShowMinButton="False" ShowMaxRestoreButton="False"
+    ResizeMode="CanResizeWithGrip" ShowCloseButton="False"
     mc:Ignorable="d" MinHeight="200" MinWidth="300"
     d:DesignHeight="250" d:DesignWidth="400"
     d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=False}">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/ModPlusAPI;component/Windows/WinResources/Styles.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/ModPlusStyle;component/Styles/Controls.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             <XmlDataProvider x:Key="Lang" Source="E:/ModPlus/Languages/en-US.xml" XPath="ModPlus/mrObjectsFilter"></XmlDataProvider>
         </ResourceDictionary>
@@ -34,7 +34,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Source={StaticResource Lang}, XPath=h1}"></TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Source={StaticResource Lang}, XPath=h2}" HorizontalAlignment="Right" Margin="3 3 10 3"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Source={StaticResource Lang}, XPath=h2}" HorizontalAlignment="Right" Margin="4 4 10 4"></TextBlock>
         <ListBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" BorderThickness="1"
                  ItemsSource="{Binding Path=SelectedObjects}">
             <ListBox.ItemTemplate>
@@ -45,27 +45,27 @@
                             <ColumnDefinition Width="Auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <CheckBox Content="{Binding Path=DisplayName, Mode=OneWay}" VerticalAlignment="Stretch"
-                                  IsChecked="{Binding Path=Selected, Mode=TwoWay}"></CheckBox>
+                                  IsChecked="{Binding Path=Selected, Mode=TwoWay}" Margin="0"></CheckBox>
                         <TextBlock Grid.Column="1" Text="{Binding Path=Count, Mode=OneWay}" Margin="5 0"
                                    VerticalAlignment="Center"></TextBlock>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Column="1" Grid.Row="1" Content="{Binding Source={StaticResource Lang}, XPath=h3}" MinWidth="100"
+        <Button Grid.Column="1" Grid.Row="1" Content="{Binding Source={StaticResource Lang}, XPath=h3}" 
                 HorizontalAlignment="Stretch" Command="{Binding Path=SelectAllCommand}"></Button>
-        <Button Grid.Column="1" Grid.Row="2" Content="{Binding Source={StaticResource Lang}, XPath=h4}" MinWidth="100"
+        <Button Grid.Column="1" Grid.Row="2" Content="{Binding Source={StaticResource Lang}, XPath=h4}" 
                 HorizontalAlignment="Stretch" Command="{Binding Path=SelectNoneCommand}"></Button>
         <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding Source={StaticResource Lang}, XPath=h5}"></TextBlock>
         <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding Path=TotalCount}"
-                   HorizontalAlignment="Right" Margin="3 3 10 3"></TextBlock>
+                   HorizontalAlignment="Right" Margin="4 4 10 4"></TextBlock>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"
                     HorizontalAlignment="Right">
-            <Button Content="{Binding Source={StaticResource Lang}, XPath=h6}" MinWidth="100"
+            <Button Content="{Binding Source={StaticResource Lang}, XPath=h6}" 
                     Command="{Binding Path=AcceptCommand}"></Button>
-            <Button Content="{Binding Source={StaticResource Lang}, XPath=h7}" MinWidth="100" Name="BtCancel"
+            <Button Content="{Binding Source={StaticResource Lang}, XPath=h7}" Name="BtCancel"
                     Click="BtCancel_OnClick"></Button>
         </StackPanel>
     </Grid>
-</mpc:BaseMetroWindow>
+</mps:ModPlusWindow>
 
