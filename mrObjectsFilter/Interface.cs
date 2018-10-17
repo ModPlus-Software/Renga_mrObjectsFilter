@@ -22,7 +22,7 @@
 
         public ContextMenuShowCase ContextMenuShowCase => ContextMenuShowCase.Selection;
 
-        public List<ViewType> ViewTypes => new List<ViewType> { ViewType.View3D, ViewType.Level };
+        public List<ViewType> ViewTypes => new List<ViewType> { ViewType.View3D, ViewType.Level, ViewType.Assembly };
 
         public bool IsAddingToMenuBySelf => false;
 
