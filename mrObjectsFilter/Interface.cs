@@ -1,4 +1,5 @@
-﻿namespace mrObjectsFilter
+﻿#pragma warning disable SA1600 // Elements should be documented
+namespace mrObjectsFilter
 {
     using System.Collections.Generic;
     using ModPlusAPI.Interfaces;
@@ -37,3 +38,4 @@
         public string FullDescription => string.Empty;
     }
 }
+#pragma warning restore SA1600 // Elements should be documented

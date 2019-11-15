@@ -14,6 +14,7 @@
     {
         private readonly Renga.Application _rengaApplication;
         private readonly MainWindow _mainWindow;
+        private List<SelectedObject> _selectedObjectsOnStartup;
 
         public MainViewModel(MainWindow mainWindow)
         {
@@ -24,13 +25,48 @@
             SelectNoneCommand = new RelayCommand(SelectNone);
         }
 
+        /// <summary>
+        /// Принять и продолжить
+        /// </summary>
+        public ICommand AcceptCommand { get; set; }
+
+        /// <summary>
+        /// Выбрать все пункты в списке
+        /// </summary>
+        public ICommand SelectAllCommand { get; }
+
+        /// <summary>
+        /// Снять выбор со всех пунктов в списке
+        /// </summary>
+        public ICommand SelectNoneCommand { get; }
+
+        /// <summary>
+        /// Коллекция выбранных объектов
+        /// </summary>
+        public ObservableCollection<SelectedObject> SelectedObjects { get; private set; }
+
+        public int TotalCount
+        {
+            get
+            {
+                var c = 0;
+                foreach (var selectedObject in SelectedObjects)
+                {
+                    if (selectedObject.Selected)
+                        c += selectedObject.Count;
+                }
+
+                return c;
+            }
+        }
+        
         public void GetObjectsFromCurrentSelection()
         {
             var selection = _rengaApplication.Selection;
             var objects = _rengaApplication.Project.Model.GetObjects();
             _selectedObjectsOnStartup = new List<SelectedObject>();
-            int[] selectedObjectsIds = (int[])selection.GetSelectedObjects();
-            foreach (int selectedObjectId in selectedObjectsIds)
+            var selectedObjectsIds = (int[])selection.GetSelectedObjects();
+            foreach (var selectedObjectId in selectedObjectsIds)
             {
                 if (objects.GetById(selectedObjectId) is IModelObject modelObject)
                 {
@@ -64,31 +100,10 @@
             return ModPlus.Helpers.Localization.RengaObjectType(objectType);
         }
 
-        private List<SelectedObject> _selectedObjectsOnStartup;
-
-        public ObservableCollection<SelectedObject> SelectedObjects { get; private set; }
-
-        public int TotalCount
-        {
-            get
-            {
-                var c = 0;
-                foreach (var selectedObject in SelectedObjects)
-                {
-                    if (selectedObject.Selected)
-                        c += selectedObject.Count;
-                }
-
-                return c;
-            }
-        }
-
-        public ICommand AcceptCommand { get; set; }
-
         private void Accept(object o)
         {
             var selection = _rengaApplication.Selection;
-            List<int> ids = new List<int>();
+            var ids = new List<int>();
 
             foreach (var selectedObject in SelectedObjects)
             {
@@ -100,8 +115,6 @@
             _mainWindow.Close();
         }
 
-        public ICommand SelectAllCommand { get; }
-
         private void SelectAll(object o)
         {
             foreach (var selectedObject in SelectedObjects)
@@ -109,8 +122,6 @@
                 selectedObject.Selected = true;
             }
         }
-
-        public ICommand SelectNoneCommand { get; }
 
         private void SelectNone(object o)
         {
