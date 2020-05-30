@@ -5,12 +5,16 @@ VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mrObjectsFilter", "mrObjectsFilter\mrObjectsFilter.csproj", "{C8AB982A-3F6C-4CD2-84F7-BEAD188FBDC8}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{4E54DF01-025A-45B2-96B4-B2D351BCA90C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E54DF01-025A-45B2-96B4-B2D351BCA90C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E54DF01-025A-45B2-96B4-B2D351BCA90C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8AB982A-3F6C-4CD2-84F7-BEAD188FBDC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8AB982A-3F6C-4CD2-84F7-BEAD188FBDC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8AB982A-3F6C-4CD2-84F7-BEAD188FBDC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
