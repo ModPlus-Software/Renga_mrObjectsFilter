@@ -1,4 +1,4 @@
-# mpStripMtext
+# mrObjectsFilter
 Filter selected objects by category
 ### Prodcut ###
 Renga
