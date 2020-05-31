@@ -7,7 +7,6 @@
     using System.Windows.Input;
     using Models;
     using ModPlusAPI.Mvvm;
-    using Renga;
     using Views;
 
     public class MainViewModel : VmBase
@@ -20,9 +19,9 @@
         {
             _rengaApplication = new Renga.Application();
             _mainWindow = mainWindow;
-            AcceptCommand = new RelayCommand(Accept);
-            SelectAllCommand = new RelayCommand(SelectAll);
-            SelectNoneCommand = new RelayCommand(SelectNone);
+            AcceptCommand = new RelayCommandWithoutParameter(Accept);
+            SelectAllCommand = new RelayCommandWithoutParameter(SelectAll);
+            SelectNoneCommand = new RelayCommandWithoutParameter(SelectNone);
         }
 
         /// <summary>
@@ -68,7 +67,7 @@
             var selectedObjectsIds = (int[])selection.GetSelectedObjects();
             foreach (var selectedObjectId in selectedObjectsIds)
             {
-                if (objects.GetById(selectedObjectId) is IModelObject modelObject)
+                if (objects.GetById(selectedObjectId) is Renga.IModelObject modelObject)
                 {
                     var objectType = modelObject.ObjectType;
                     var selectedObjectModel = _selectedObjectsOnStartup.FirstOrDefault(so => so.CategoryId.Equals(objectType));
@@ -100,7 +99,7 @@
             return ModPlus.Helpers.Localization.RengaObjectType(objectType);
         }
 
-        private void Accept(object o)
+        private void Accept()
         {
             var selection = _rengaApplication.Selection;
             var ids = new List<int>();
@@ -115,7 +114,7 @@
             _mainWindow.Close();
         }
 
-        private void SelectAll(object o)
+        private void SelectAll()
         {
             foreach (var selectedObject in SelectedObjects)
             {
@@ -123,7 +122,7 @@
             }
         }
 
-        private void SelectNone(object o)
+        private void SelectNone()
         {
             foreach (var selectedObject in SelectedObjects)
             {
