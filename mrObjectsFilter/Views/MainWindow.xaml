@@ -7,20 +7,20 @@
     xmlns:viewModels="clr-namespace:mrObjectsFilter.ViewModels"
     xmlns:models="clr-namespace:mrObjectsFilter.Models"
     xmlns:mps="https://modplus.org/winfx/xaml/controls"
-    SizeToContent="WidthAndHeight" Loaded="MainWindow_OnLoaded"
+    Loaded="MainWindow_OnLoaded"
     ResizeMode="CanResizeWithGrip" ShowCloseButton="False"
-    mc:Ignorable="d" MinHeight="200" MinWidth="300"
-    d:DesignHeight="250" d:DesignWidth="400"
+    mc:Ignorable="d" MinHeight="300" MinWidth="400"
+    Height="300" Width="400"
     d:DataContext="{d:DesignInstance viewModels:MainViewModel, IsDesignTimeCreatable=False}">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/ModPlusStyle;component/Styles/Controls.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <XmlDataProvider x:Key="Lang" Source="E:/ModPlus/Languages/en-US.xml" XPath="ModPlus/mrObjectsFilter"></XmlDataProvider>
+            <XmlDataProvider x:Key="Lang" Source="E:/ModPlus/Languages/ru-RU.xml" XPath="ModPlus/mrObjectsFilter"></XmlDataProvider>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Margin="10">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -33,8 +33,10 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Source={StaticResource Lang}, XPath=h1}"></TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Source={StaticResource Lang}, XPath=h2}" HorizontalAlignment="Right" Margin="4 4 10 4"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Source={StaticResource Lang}, XPath=h1}"
+                   Margin="{DynamicResource ModPlusDefaultMargin}"/>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Source={StaticResource Lang}, XPath=h2}"
+                   HorizontalAlignment="Right" Margin="{DynamicResource ModPlusDefaultMargin}"/>
         <ListBox Grid.Column="0" Grid.Row="1" Grid.RowSpan="3" BorderThickness="1"
                  ItemsSource="{Binding Path=SelectedObjects}">
             <ListBox.ItemTemplate>
@@ -56,9 +58,10 @@
                 HorizontalAlignment="Stretch" Command="{Binding Path=SelectAllCommand}"></Button>
         <Button Grid.Column="1" Grid.Row="2" Content="{Binding Source={StaticResource Lang}, XPath=h4}" 
                 HorizontalAlignment="Stretch" Command="{Binding Path=SelectNoneCommand}"></Button>
-        <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding Source={StaticResource Lang}, XPath=h5}"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding Source={StaticResource Lang}, XPath=h5}"
+                   Margin="{DynamicResource ModPlusDefaultMargin}"/>
         <TextBlock Grid.Column="0" Grid.Row="4" Text="{Binding Path=TotalCount}"
-                   HorizontalAlignment="Right" Margin="4 4 10 4"></TextBlock>
+                   HorizontalAlignment="Right" Margin="{DynamicResource ModPlusDefaultMargin}"/>
         <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"
                     HorizontalAlignment="Right">
             <Button Content="{Binding Source={StaticResource Lang}, XPath=h6}" 

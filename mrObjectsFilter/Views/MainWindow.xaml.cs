@@ -13,7 +13,6 @@
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            SizeToContent = SizeToContent.Manual;
             ((MainViewModel)DataContext).GetObjectsFromCurrentSelection();
         }
 
