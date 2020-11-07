@@ -1,7 +1,6 @@
 ﻿namespace mrObjectsFilter
 {
     using ModPlus;
-    using ModPlusAPI;
     using ViewModels;
     using Views;
 
@@ -11,7 +10,9 @@
         /// <inheritdoc />
         public void Start()
         {
-            Statistic.SendCommandStarting(Interface.GetInstance());
+#if !DEBUG
+            ModPlusAPI.Statistic.SendCommandStarting(ModPlusConnector.Instance);
+#endif
 
             var mainWindow = new MainWindow();
             var mainViewModel = new MainViewModel(mainWindow);
